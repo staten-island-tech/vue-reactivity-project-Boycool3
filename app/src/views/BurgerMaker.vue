@@ -5,7 +5,7 @@
     <div class="container">
       <ToppingCard v-for="topping in toppings" :key="topping.name" :topping="topping">
         <button @click="Add(topping)">Add To Burger</button>
-        <button>Remove From Burger</button>
+        <button @click="Nvm(topping)">Remove From Burger</button>
       </ToppingCard>
     </div>
   </div>
@@ -21,7 +21,7 @@ const toppings = ref([
   { name: 'Beef Patty', price: 4 },
   { name: 'Chicken Patty', price: 1200 },
   { name: 'Onions', price: 0.5 },
-  { name: 'Pickles', price: 500 },
+  { name: 'Pickle(Singular)', price: 1.79e308 },
   { name: 'Eggs', price: 3 },
   { name: 'Bacon', price: 0.2 },
   { name: 'Chicken Cuts', price: 300 },
@@ -29,6 +29,12 @@ const toppings = ref([
 let burgerprice = 0;
 function Add(topping){
   burgerprice = burgerprice + topping.price
+}
+function Nvm(topping){
+  burgerprice = burgerprice - topping.price
+  if(burgerprice < 0){
+    burgerprice = 0
+  }
 }
 </script>
 
