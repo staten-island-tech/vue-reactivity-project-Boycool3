@@ -2,8 +2,7 @@
     <div class="card">
         <h2>{{topping.name}}</h2>
         <h3>{{topping.price}}$</h3>
-        <button>Add to Burger</button>
-        <button>Remove from Burger</button>
+        <slot></slot>
     </div>
 </template>
 

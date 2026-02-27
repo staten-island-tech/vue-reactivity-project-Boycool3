@@ -1,15 +1,19 @@
 <template>
-    <div class="thing">
-        <p>Burger,,,</p>
-        <div class="container">
-            <ToppingCard v-for="topping in toppings" :key="topping.name" :topping="topping">{{ topping.name }}</ToppingCard>
-        </div>
+  <div class="thing">
+    <p>Burger,,,</p>
+    <h2>Current Price: {{burgerprice}}$</h2>
+    <div class="container">
+      <ToppingCard v-for="topping in toppings" :key="topping.name" :topping="topping">
+        <button @click="Add(topping)">Add To Burger</button>
+        <button>Remove From Burger</button>
+      </ToppingCard>
     </div>
+  </div>
 </template>
 
 <script setup>
-import {ref} from 'vue'
-import ToppingCard from '@/components/ToppingCard.vue';
+import { ref } from 'vue'
+import ToppingCard from '@/components/ToppingCard.vue'
 const toppings = ref([
   { name: 'Tomatoes', price: 420 },
   { name: 'Lettuce', price: 5000 },
@@ -22,14 +26,21 @@ const toppings = ref([
   { name: 'Bacon', price: 0.2 },
   { name: 'Chicken Cuts', price: 300 },
 ])
+let burgerprice = 0;
+function Add(topping){
+  burgerprice = burgerprice + topping.price
+}
 </script>
 
 <style scoped>
-.thing{
-    border: 10px outset rgb(255, 173, 31);
-    border-style: outset ridge ridge outset;
-    border-radius: 5px;
-    background-color: rgb(255, 207, 124);
+h2{
+  text-align: center;
+}
+.thing {
+  border: 15px outset rgb(255, 173, 31);
+  border-style: outset ridge ridge outset;
+  border-radius: 10px;
+  background-color: rgb(255, 207, 124);
 }
 .container {
   display: flex;
@@ -38,11 +49,11 @@ const toppings = ref([
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  flex-direction: row;  
+  flex-direction: row;
 }
 .card {
   border: 8px double firebrick;
-  background-color:coral;
+  background-color: coral;
   padding: 4px;
   margin-bottom: 12px;
   border-radius: 24px;
