@@ -1,14 +1,14 @@
 <template>
     <div class="burgercard">
-        <h2>{{burger.name}}</h2>
-        <h3>{{burger.price}}$</h3>
+        <h2>{{bun.name}}</h2>
+        <h3>{{bun.price}}$</h3>
         <slot></slot>
     </div>
 </template>
 
 <script setup>
 defineProps({
-    burger:{
+    bun:{
         type: Object,
         required: true
     }

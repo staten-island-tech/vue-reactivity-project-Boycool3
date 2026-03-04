@@ -1,7 +1,7 @@
 <template>
   <div class="SOMANYDIVSAAAA">
     <div class="burgerwindow">
-      <h1>Current Price: {{burgerprice}}$</h1>
+      <h1>Current Price: {{ Math.round(burgerprice) }}$</h1>
       <h3>Current Burger:</h3>
     </div>
   <div class="thing">
@@ -14,8 +14,8 @@
     </div>
     <h1>Burger Buns</h1>
     <div class="container">
-      <BurgerCard v-for="burger in burgers" :key="burger.name" :burger="burger">
-        <button @click="Add(burger)">Use in Burger</button>
+      <BurgerCard v-for="bun in buns" :key="bun.name" :bun="bun">
+        <button @click="Add(bun)">Use in Burger</button>
       </BurgerCard>
     </div>
   </div>
@@ -27,36 +27,36 @@ import { ref } from 'vue'
 import ToppingCard from '@/components/ToppingCard.vue'
 import BurgerCard from '@/components/BurgerCard.vue'
 const toppings = ref([
-  { name: 'Tomatoes', price: 420 },
-  { name: 'Lettuce', price: 5000 },
-  { name: 'Cheese', price: 30 },
-  { name: 'Beef Patty', price: 4 },
-  { name: 'Chicken Patty', price: 1200 },
-  { name: 'Onions', price: 0.5 },
-  { name: 'Pickle(Singular)', price: 1e308 },
-  { name: 'Eggs', price: 3 },
-  { name: 'Bacon', price: 0.2 },
-  { name: 'Chicken Cuts', price: 300 },
+  { name: 'Tomatoes', price: 5.99 },
+  { name: 'Lettuce', price: 2.50 },
+  { name: 'Cheese', price: 1.99 },
+  { name: 'Beef Patty', price: 11.99 },
+  { name: 'Chicken Patty', price: 9.99 },
+  { name: 'Onions', price: 3.50 },
+  { name: 'Pickle(Singular)', price: 29999.99 },
+  { name: 'Eggs', price: 3.99 },
+  { name: 'Bacon', price: 6.50 },
+  { name: 'Chicken Cuts', price: 9.35 },
 ])
-const burgers = ref([
+const buns = ref([
   { name: 'Basic Bun', price: 10.00 },
   { name: 'Pretzel Bun', price: 10.00 },
   { name: 'Egg Bun', price: 10.00 },
   { name: 'Ink Bun', price: 10.00 },
 ])
-let burgerprice = 10;
+const burgerprice = ref(10);
 function Add(topping){
-  burgerprice = burgerprice + topping.price
-  if(burgerprice > 1e308){
-    burgerprice = 1e308
-  }
+  burgerprice.value = burgerprice.value + topping.price
 }
 function Nvm(topping){
-  burgerprice = burgerprice - topping.price
-  if(burgerprice < 10){
-    burgerprice = 10
+  burgerprice.value = burgerprice.value - topping.price
+  if(burgerprice.value < 10){
+    burgerprice.value = 10
   }
 }
+const Burger = ref({
+
+})
 </script>
 
 <style scoped>
@@ -123,5 +123,6 @@ button{
   border: 3px rgb(124, 71, 52) solid;
   border-radius: 5px;
   background-color: rgb(255, 207, 124);
+  cursor:pointer;
 }
 </style>
