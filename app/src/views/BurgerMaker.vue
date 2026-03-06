@@ -2,7 +2,7 @@
   <div class="SOMANYDIVSAAAA">
     <div class="burgerwindow">
       <h1>Current Price: {{ Math.round(burgerprice) }}$</h1>
-      <h3>Current Burger:</h3>
+      <h3>Current Order: {{ order }}</h3>
     </div>
   <div class="thing">
     <h1>Toppings</h1>
@@ -44,19 +44,24 @@ const buns = ref([
   { name: 'Egg Bun', price: 10.00 },
   { name: 'Ink Bun', price: 10.00 },
 ])
+const order = ref([
+
+  ])
+let thingarray = [
+  
+]
 const burgerprice = ref(10);
 function Add(topping){
   burgerprice.value = burgerprice.value + topping.price
+  order.value.push(topping.name)
 }
 function Nvm(topping){
-  burgerprice.value = burgerprice.value - topping.price
-  if(burgerprice.value < 10){
-    burgerprice.value = 10
-  }
+  console.log(topping.name)
+  console.log(order.value)
+  if(topping.name in order.value){
+    console.log('True')
+  burgerprice.value = burgerprice.value - topping.price}
 }
-const Burger = ref({
-
-})
 </script>
 
 <style scoped>
@@ -111,6 +116,7 @@ h2{
   align-items: center;
 }
 .burgerwindow{
+  width: 300px;
   border: 15px outset rgb(255, 173, 31);
   border-style: outset none ridge outset;
   border-radius: 10px;
