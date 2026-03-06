@@ -58,9 +58,9 @@ function Add(topping){
 function Nvm(topping){
   console.log(topping.name)
   console.log(order.value)
-  if(topping.name in order.value){
-    console.log('True')
-  burgerprice.value = burgerprice.value - topping.price}
+  if(order.value.includes(topping.name)){
+    console.log('it works')
+    burgerprice.value = burgerprice.value - topping.price}
 }
 </script>
 
